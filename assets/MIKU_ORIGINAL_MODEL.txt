@@ -1,4 +1,0 @@
-Prepared original Miku model reused from gumi-animation-preview.
-Mesmerizer Windows 2.0.3, Atena Fumei. Original SpriteSkin meshes, UV, bones, weights and AnimationClip samples.
-Textures: HatsuneMiku_Mesmerizer and HatsuneMiku_Mesmerizer_Insane.
-Source model data and textures copied without modification. Renderer adapted from the existing preview.js.

@@ -1,6 +1,0 @@
-Town art added in 0.54 using ImageGen, based on the user-approved town plan.
-Reference plan: /workspace/generated_images/exec-e3fb0aa6-9f50-49d8-bd1c-49b096e28b6f.png
-Clean background: /workspace/generated_images/exec-64cdc2ab-20f2-45a9-9753-4df4cb08a825.png
-Transparent boat: /workspace/generated_images/exec-7e690484-d5c6-4179-9f14-21c8c3cc7622.png
-Existing shop, vendor, hero and bird art are reused from the provided game sources.
-Runtime fountain and portal animation are drawn in TownArt.
