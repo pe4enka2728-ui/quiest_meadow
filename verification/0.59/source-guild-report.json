@@ -1,0 +1,19 @@
+{
+  "animatedFirstMarker": true,
+  "fiveOverlappingPapers": true,
+  "existingGumiPortrait": true,
+  "worldInputBlocked": true,
+  "paperPluckAndHands": true,
+  "pauseFreezesAnimation": true,
+  "inspectionContainsLocationRewardAndObjective": true,
+  "cancelReturnsPaper": true,
+  "acceptPersistsWithoutPayingEarly": true,
+  "acceptedPaperCarried": true,
+  "checkpointAndReloadPreserveState": true,
+  "oneTimeReward": 150,
+  "legacySave": true,
+  "developerRollback": true,
+  "responsive": true,
+  "errors": [],
+  "externalRequests": []
+}

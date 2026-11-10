@@ -1,0 +1,32 @@
+#battle[data-encounter=neru]{color:#f4f0e9;background:#1d2236;--skill-bg:#20263b;--skill-row:#2a3047;--skill-border:#a8afc8;--skill-text:#fff8ed;--skill-muted:#b5bed4;--skill-accent:#f1dfa1;--skill-active:#444862;--skill-shadow:#13192a}
+#battle[data-encounter=neru] .battle-header{text-shadow:2px 2px #172038}
+#battle[data-encounter=neru] .eyebrow,#battle[data-encounter=neru] .battle-controls,#battle[data-encounter=neru] .enemy-note{color:#d8deef}
+#battle[data-encounter=neru] .location-line{background:#f2e8cb;box-shadow:21px 0 #f2e8cb44}
+#battle[data-encounter=neru] .enemy-note span:first-child{color:#f0dc9f}
+#battle[data-encounter=neru] .target-diamond,#battle[data-encounter=neru] .enemy-bar i{background:#eed683}
+#battle[data-encounter=neru] .enemy-bar{background:#232a40;border-color:#adb7d0;box-shadow:0 3px #182035}
+#battle[data-encounter=neru] .panel,#battle[data-encounter=neru] .turn-panel{background:#20263bec;border-color:#a8afc8;box-shadow:5px 5px #12192b}
+#battle[data-encounter=neru] .turn-panel strong{color:#fff3d9}
+#battle[data-encounter=neru] .battle-bottom-shade{background:#171e30ed;border-color:#a8afc8;box-shadow:0 -6px #25324a55}
+#battle[data-encounter=neru] .battle-action{background:#2a3047;border-color:#8e9cb8;box-shadow:4px 4px #13192a}
+#battle[data-encounter=neru] .battle-action.chosen{background:#444862;border-color:#f1dfa1;box-shadow:inset 4px 0 #f1dfa1,4px 4px #13192a}
+#battle[data-encounter=neru] .action-copy small,#battle[data-encounter=neru] .action-number,#battle[data-encounter=neru] .meter-value em{color:#bcc5db}
+#battle[data-encounter=neru] .hero-portrait,#battle[data-encounter=neru] .miku-card canvas{background:#303950;border-color:#9faec9}
+#battle[data-encounter=neru] .hero-name>span{background:#414763;color:#f0e5c9}
+#battle[data-encounter=neru] .meter-track{background:#172038;border-color:#8191b1}
+#battle[data-encounter=neru] .meter-track.hp i{background:#e6a8b8}
+#battle[data-encounter=neru] .meter-track.mp i{background:#b1b6e5}
+#battle[data-encounter=neru] .miku-card p{color:#e4e7f1}
+#battle[data-encounter=neru] .friend-dot,#battle[data-encounter=neru] .turn-dot{background:#e8d493}
+#battle[data-encounter=neru] .command-heading{color:#d8deef}
+#battle[data-encounter=neru] .thin-rule{background:#7786a4}
+
+#battle[data-encounter=neru] .battle-controls,#battle[data-encounter=neru] #action-description{visibility:hidden}
+#battle #neru-targets{position:absolute;z-index:12;left:50%;top:710px;transform:translateX(-50%);width:590px;padding:18px;background:#20263bf5;border:2px solid #adb7d0;box-shadow:5px 5px #13192a;text-align:center;color:#fff8ed}
+#battle #neru-targets strong{display:block;font:24px QuietMeadowPixel;margin-bottom:12px}
+#battle #neru-targets div{display:flex;justify-content:center;gap:10px;margin-bottom:12px}
+#battle #neru-targets button{padding:10px 12px;border:1px solid #adb7d0;background:#30364d;color:#fff8ed;font:19px QuietMeadowPixel;cursor:pointer}
+#battle #neru-targets [aria-pressed=true]{background:#55516a;border-color:#f0d78a;box-shadow:inset 0 -3px #f0d78a}
+#battle #neru-targets>button{margin:3px 8px}
+#battle #neru-eclipse{position:absolute;left:284px;bottom:calc(100% + 10px);padding:5px;background:#302c4a;border:1px solid #e6d491;color:#efdb99;font:17px QuietMeadowPixel;cursor:help}
+#battle #neru-eclipse.cooldown{filter:grayscale(1);opacity:.6}

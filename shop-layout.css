@@ -1,0 +1,26 @@
+/* Stable shop frames: content scrolls inside them; category selection never resizes the layout. */
+#shop .shop-board{grid-template-rows:27% minmax(0,1fr) 20%;overflow:hidden;}
+#shop .shop-top{display:grid;grid-template-rows:58px minmax(0,1fr);min-height:0;overflow:hidden;}
+#shop .shop-heading{height:58px;min-height:0;overflow:hidden;}
+#shop .shop-top-content{height:100%;min-height:0;overflow:hidden;}
+#shop .shop-item-info,#shop .shop-speech{min-width:0;min-height:0;overflow:auto;scrollbar-gutter:stable;scrollbar-color:#a58b5f #493020;}
+#shop .shop-middle,#shop .shop-vendor{min-width:0;min-height:0;overflow:hidden;}
+#shop .shop-catalog{min-height:0;overflow:hidden;}
+#shop .shop-list-header{flex:0 0 44px;min-height:44px;height:44px;margin-bottom:10px;}
+#shop .shop-list-header h2{min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#shop #shop-back{flex:0 0 auto;font-size:15px;white-space:nowrap;}
+#shop #shop-back[hidden]{display:block!important;visibility:hidden;pointer-events:none;}
+#shop #shop-list{flex:1 1 0;min-height:0;overflow:auto;scrollbar-gutter:stable;scrollbar-color:#7c8c62 #273f33;padding-right:5px;padding-bottom:5px;}
+#shop #shop-list>.shop-button{flex:0 0 auto;min-height:76px;}
+#shop .shop-catalog-note{flex:0 0 auto;margin-top:0;padding-top:10px;}
+#shop #shop-portrait{min-height:0;overflow:hidden;}
+#shop #shop-portrait canvas{min-width:0;min-height:0;max-height:100%;}
+#shop .shop-vendor-name{flex:0 0 66px;min-height:0;}
+#shop .shop-bottom{min-height:0;overflow:auto;scrollbar-gutter:stable;}
+#shop #shop-question{min-height:28px;height:28px;line-height:28px;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#shop #shop-replies{flex-wrap:nowrap;min-height:44px;align-items:stretch;}
+#shop #shop-replies .shop-button{min-width:0;white-space:normal;font-size:18px;padding:8px 13px;}
+#shop .shop-key-hint{font-size:11px;margin-top:9px;}
+#shop .shop-button.goods-row.purchased{background:#3b403c;border-color:#71776d #262e29 #262e29 #71776d;box-shadow:3px 3px #17221d;color:#a1a69c;filter:grayscale(1);opacity:.65;cursor:default;text-shadow:none;}
+#shop .shop-button.goods-row.purchased small{color:#a1a69c;}
+@media(max-height:700px){#shop .shop-top{grid-template-rows:46px minmax(0,1fr);}#shop .shop-heading{height:46px;}#shop .shop-vendor-name{flex-basis:54px;}#shop #shop-list>.shop-button{min-height:64px;}#shop .shop-list-header{flex-basis:38px;min-height:38px;height:38px;margin-bottom:6px;}#shop #shop-replies .shop-button{font-size:16px;padding:7px 10px;}#shop #shop-question{font-size:17px;line-height:23px;height:23px;min-height:23px;margin-bottom:5px;}}

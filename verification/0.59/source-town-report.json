@@ -1,0 +1,153 @@
+{
+  "originalSpawn": true,
+  "walkSouthIntoTown": true,
+  "townScale": [
+    3072,
+    2048
+  ],
+  "pauseDuringTransfer": true,
+  "followCameraBothAxes": true,
+  "clickWithScrolledCamera": true,
+  "safeNavigation": [
+    {
+      "name": "entry",
+      "legs": 1,
+      "ms": 0.19999999925494194,
+      "distance": 0,
+      "blocked": false
+    },
+    {
+      "name": "guild",
+      "legs": 5,
+      "ms": 58.799999999813735,
+      "distance": 3.553509397554031e-12,
+      "blocked": false
+    },
+    {
+      "name": "equipment",
+      "legs": 9,
+      "ms": 125,
+      "distance": 2.0589562014123242e-12,
+      "blocked": false
+    },
+    {
+      "name": "consumables",
+      "legs": 7,
+      "ms": 111.29999999981374,
+      "distance": 4.817961803477622e-12,
+      "blocked": false
+    },
+    {
+      "name": "abilities",
+      "legs": 3,
+      "ms": 96.1000000005588,
+      "distance": 2.5421149729252073e-12,
+      "blocked": false
+    },
+    {
+      "name": "fountain",
+      "legs": 2,
+      "ms": 94.09999999962747,
+      "distance": 7.434110886730112e-12,
+      "blocked": false
+    },
+    {
+      "name": "portal",
+      "legs": 8,
+      "ms": 121.20000000018626,
+      "distance": 2.8936371145269796e-11,
+      "blocked": false
+    },
+    {
+      "name": "quay",
+      "legs": 3,
+      "ms": 129.8999999994412,
+      "distance": 6.288845127500887e-12,
+      "blocked": false
+    },
+    {
+      "name": "pier",
+      "legs": 4,
+      "ms": 158,
+      "distance": 1.1368683772161603e-12,
+      "blocked": false
+    },
+    {
+      "name": "west",
+      "legs": 13,
+      "ms": 59.200000000186265,
+      "distance": 6.394379327043531e-12,
+      "blocked": false
+    },
+    {
+      "name": "house1",
+      "legs": 4,
+      "ms": 53.200000000186265,
+      "distance": 4.553154302471009e-12,
+      "blocked": false
+    },
+    {
+      "name": "house2",
+      "legs": 4,
+      "ms": 53.299999999813735,
+      "distance": 1.3869794202037156e-11,
+      "blocked": false
+    },
+    {
+      "name": "house3",
+      "legs": 5,
+      "ms": 65.80000000074506,
+      "distance": 1.410129300594471e-11,
+      "blocked": false
+    }
+  ],
+  "haruSellsAllCategories": [
+    {
+      "category": "equipment",
+      "item": "ribbon",
+      "gold": 80
+    },
+    {
+      "category": "consumables",
+      "item": "herbal",
+      "gold": 56
+    },
+    {
+      "category": "magic",
+      "item": "step",
+      "gold": 11
+    }
+  ],
+  "animatedHaru": true,
+  "treeDepthOrder": [
+    [
+      "teto",
+      "tree"
+    ],
+    [
+      "tree",
+      "teto"
+    ]
+  ],
+  "haruCounterOrder": [
+    "stall",
+    "counter",
+    "stall",
+    "haru",
+    "counter",
+    "stall",
+    "counter"
+  ],
+  "pixelFountain": true,
+  "animatedWaterBoatCrystals": true,
+  "existingBirds": true,
+  "pauseFreezesTown": true,
+  "townCheckpointRestore": true,
+  "portalPreservesProgress": true,
+  "walkBackNorth": true,
+  "legacySave": true,
+  "existingBattlesPreserved": true,
+  "responsive": true,
+  "errors": [],
+  "externalRequests": []
+}

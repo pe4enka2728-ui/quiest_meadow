@@ -1,0 +1,1 @@
+@font-face{font-family:QuietMeadowPixel;src:url('assets/quiet-meadow-pixel.woff2') format('woff2');font-weight:400;font-style:normal;font-display:block}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080e13}body{display:grid;place-items:center}#battle-preview-host{position:relative;width:min(100vw,150vh);height:min(100vh,66.6667vw)}

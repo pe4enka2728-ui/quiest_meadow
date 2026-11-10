@@ -1,0 +1,27 @@
+#guild-board{position:absolute;inset:0;z-index:45;overflow:clip;background:#101a1be8;color:#f2e3c8;font:20px QuietMeadowPixel,monospace;isolation:isolate}
+#guild-board[hidden],#guild-board [hidden]{display:none!important}
+#guild-board *{box-sizing:border-box}#guild-board button{font:inherit;cursor:pointer;color:inherit}
+#guild-board-stage{position:absolute;left:0;top:0;width:1536px;height:1024px;transform-origin:0 0;background:radial-gradient(ellipse at 50% 48%,#85674330,transparent 72%)}
+.guild-board-heading{position:absolute;left:168px;top:62px}.guild-board-heading>span{font-size:13px;letter-spacing:3px;color:#c4b396}.guild-board-heading h1{font-weight:400;font-size:39px;margin:15px 0 8px}.guild-board-heading p{margin:0;font-size:18px;color:#c6b89f}
+#guild-board-close{position:absolute;right:169px;top:75px;display:flex;gap:14px;align-items:center;border:2px solid #af9674;background:#302b25;padding:2px 15px;font-size:34px!important}#guild-board-close small{font-size:13px}
+#guild-board-wall{position:absolute;left:168px;top:220px;width:1200px;height:660px;border:12px solid #b08a54;outline:4px solid #34251e;box-shadow:inset 0 0 0 5px #3d2b21,10px 13px #080b0c88}
+#guild-wood{position:absolute;left:-12px;top:-12px;width:1200px;height:660px;image-rendering:pixelated;z-index:-1}
+#guild-papers{position:absolute;left:-12px;top:-12px;inset:-12px;pointer-events:none}
+.guild-leaflet{position:absolute;margin:0;padding:0;border:0;background:none;transform-origin:50% 35%;filter:drop-shadow(7px 9px 0 #241b1266);pointer-events:none}
+.guild-leaflet canvas{width:100%;height:100%;display:block;image-rendering:pixelated}.guild-leaflet:not(button){opacity:.86}
+#guild-gumi-poster{pointer-events:auto}#guild-gumi-poster:hover{filter:drop-shadow(9px 12px 0 #241b1288) brightness(1.045)}#guild-gumi-poster:focus-visible{outline:3px dashed #f8dfa2;outline-offset:6px}
+.guild-pin{position:absolute;left:calc(50% - 6px);top:7px;width:12px;height:12px;background:#755444;border:2px solid #382a27;box-shadow:2px 3px #211b16aa}.guild-pin:after{content:'';position:absolute;left:1px;top:1px;width:4px;height:3px;background:#e3c48d}
+.guild-abandoned-pin{left:239px;top:64px;z-index:0}.guild-paper-stub{position:absolute;left:220px;top:73px;width:35px;height:16px;background:#bfb08a;transform:rotate(-9deg);clip-path:polygon(0 0,100% 0,92% 100%,70% 72%,40% 95%,0 72%);z-index:0}
+#guild-carried-order{position:absolute;left:84px;top:174px;width:300px;height:165px;border:2px dashed #b99761;background:#382b22c4;text-align:center;padding:16px;z-index:4}#guild-carried-order strong{display:block;font-size:24px;font-weight:400;color:#f0d49a;margin:8px 0}#guild-carried-order small{display:block;font-size:15px;color:#d1bd99}.guild-folded-paper{font-size:30px;color:#f1dfad}
+#guild-inspection{position:absolute;inset:0;z-index:6;outline:none}.guild-inspection-shade{position:absolute;inset:0;background:#080e12;pointer-events:none}
+#guild-flypaper{position:absolute;transform-origin:center;z-index:2;pointer-events:none}#guild-flypaper>canvas{width:100%;height:100%;image-rendering:pixelated}
+#guild-accepted-stamp{position:absolute;left:6%;right:6%;bottom:16%;border:5px double #a44643;color:#a44643;font-size:40px;text-align:center;padding:9px 0;background:#edddb426;font-weight:400;transform-origin:center}
+#guild-hands{position:absolute;inset:0;width:1536px;height:1024px;image-rendering:pixelated;z-index:3;pointer-events:none}
+#guild-order-detail{position:absolute;left:877px;top:133px;width:434px;padding:22px 24px 20px;border-top:3px solid #aa8c5c;border-bottom:3px solid #aa8c5c;background:#192124eb;color:#eee0c7;z-index:4}
+.guild-order-number{font-size:12px;letter-spacing:2px;color:#c6ab7a}#guild-order-title{font-size:32px;font-weight:400;margin:10px 0 13px}.guild-order-story{font-size:16px;line-height:22px;color:#cec4ae;margin:0 0 16px}
+#guild-order-detail dl{margin:0}#guild-order-detail dt{font-size:12px;letter-spacing:2px;color:#b59d77;margin-top:10px}#guild-order-detail dd{margin:5px 0 0;font-size:18px;line-height:23px}#guild-order-detail .guild-order-reward{font-size:24px;color:#f1d18a}.guild-order-reward b{font-weight:400}.guild-order-reward>span{font-size:19px}
+#guild-order-warning{font-size:13px;color:#dda399;margin:15px 0 8px}#guild-order-requirement{font-size:13px;line-height:19px;color:#b4ac99;margin:0 0 14px}
+.guild-order-actions{display:flex;flex-direction:column;gap:8px}#guild-board #guild-accept-order{background:#d6b475;border:2px solid #f1d5a1;color:#30231b;padding:10px 14px;font-size:21px!important;box-shadow:4px 4px #0b1114}#guild-board #guild-accept-order:disabled{cursor:default;box-shadow:none;background:#39433b;border-color:#6d8065;color:#cbd0b5}
+#guild-inspect-back{background:none;border:1px solid #67716d;color:#c7c7b8;padding:7px;font-size:15px!important}#guild-order-status{font-size:13px;line-height:19px;margin:12px 0 0;color:#c4d1b3;min-height:40px}
+.guild-board-footer{position:absolute;left:168px;right:168px;top:922px;display:flex;justify-content:space-between;font-size:14px;color:#b9ae95}.guild-board-footer span:first-child{color:#e6d19f}#guild-board-message{position:absolute;left:875px;top:897px;width:450px;font-size:15px;line-height:22px;color:#eed398;margin:0;z-index:8}
+#guild-board button:focus-visible{outline:3px solid #f4d69a;outline-offset:4px}#guild-board button:disabled{cursor:default}

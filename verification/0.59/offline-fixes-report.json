@@ -1,0 +1,217 @@
+{
+  "immovableContacts": [
+    {
+      "resident": 0,
+      "side": "d",
+      "drift": 0,
+      "separation": 28.000024414062636,
+      "blocked": false
+    },
+    {
+      "resident": 0,
+      "side": "a",
+      "drift": 0,
+      "separation": 28.000024414062636,
+      "blocked": false
+    },
+    {
+      "resident": 0,
+      "side": "s",
+      "drift": 0,
+      "separation": 28.000024414062523,
+      "blocked": false
+    },
+    {
+      "resident": 0,
+      "side": "w",
+      "drift": 0,
+      "separation": 28.000024414062523,
+      "blocked": false
+    },
+    {
+      "resident": 1,
+      "side": "d",
+      "drift": 0,
+      "separation": 28.000024414062523,
+      "blocked": false
+    },
+    {
+      "resident": 1,
+      "side": "a",
+      "drift": 0,
+      "separation": 28.000024414062523,
+      "blocked": false
+    },
+    {
+      "resident": 1,
+      "side": "s",
+      "drift": 0,
+      "separation": 28.000024414062636,
+      "blocked": false
+    },
+    {
+      "resident": 1,
+      "side": "w",
+      "drift": 0,
+      "separation": 28.000024414062636,
+      "blocked": false
+    },
+    {
+      "resident": 2,
+      "side": "d",
+      "drift": 0,
+      "separation": 28.000024414062494,
+      "blocked": false
+    },
+    {
+      "resident": 2,
+      "side": "a",
+      "drift": 0,
+      "separation": 28.000024414062494,
+      "blocked": false
+    },
+    {
+      "resident": 2,
+      "side": "s",
+      "drift": 0,
+      "separation": 28.000024414062523,
+      "blocked": false
+    },
+    {
+      "resident": 2,
+      "side": "w",
+      "drift": 0,
+      "separation": 28.000024414062636,
+      "blocked": false
+    }
+  ],
+  "imageSprites": [
+    {
+      "id": "asya",
+      "frames": 12,
+      "directions": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "lev",
+      "frames": 12,
+      "directions": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "miron",
+      "frames": 12,
+      "directions": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "width": 32,
+      "height": 32
+    }
+  ],
+  "companion": {
+    "gap": 86.7629032947656,
+    "detours": 1,
+    "miku": {
+      "x": 1978.5129854153113,
+      "y": 819.4317450472296
+    },
+    "blocked": false,
+    "valid": true
+  },
+  "haruOnly": [
+    {
+      "stall": "equipment",
+      "opens": false
+    },
+    {
+      "stall": "abilities",
+      "opens": false
+    },
+    {
+      "stall": "consumables",
+      "opens": true
+    }
+  ],
+  "fountain": [
+    {
+      "blocked": false,
+      "side": -138.00005101445754
+    },
+    {
+      "blocked": false,
+      "side": -138.00005101445754
+    },
+    {
+      "blocked": false,
+      "side": -79
+    },
+    {
+      "blocked": false,
+      "side": -79
+    }
+  ],
+  "depthProbes": {
+    "quayBack": 616,
+    "quayFront": 1320,
+    "portalBack": 1160,
+    "portalFront": 1320,
+    "crateBack": 212,
+    "crateFront": 1320
+  },
+  "chimneys": [
+    {
+      "id": "west-house-1",
+      "x": 416,
+      "y": 1242,
+      "stemPixels": 87,
+      "below": false
+    },
+    {
+      "id": "north-house-2",
+      "x": 2216,
+      "y": 340,
+      "stemPixels": 93,
+      "below": false
+    }
+  ],
+  "dryBoat": {
+    "teal": 0,
+    "solid": 169643,
+    "bob": 2.596515604421029,
+    "tilt": 0.006999275362854914
+  },
+  "movingSea": [
+    {
+      "changed": 3540,
+      "total": 4800,
+      "ratio": 0.7375
+    },
+    {
+      "changed": 2796,
+      "total": 4800,
+      "ratio": 0.5825
+    },
+    {
+      "changed": 2452,
+      "total": 4800,
+      "ratio": 0.5108333333333334
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

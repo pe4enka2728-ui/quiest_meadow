@@ -1,0 +1,65 @@
+/* Full immutable checkpoints. The UI never overwrites an existing copy. */
+(()=>{
+const clone=value=>JSON.parse(JSON.stringify(value));
+function migrateLegacy(snapshot){
+ if(!snapshot||!Array.isArray(snapshot.trail))return snapshot;
+ const legacy=typeof snapshot.gameVersion==='string'&&snapshot.gameVersion!==LevelData.version||snapshot.gameVersion===undefined;
+ const all=[snapshot.teto,snapshot.miku,...snapshot.trail];
+ if(legacy&&globalThis.TownData&&snapshot.location===TownData.id){const pinned=snapshot.flags?.mikuHeartsReleased&&!snapshot.flags?.mikuRecovered,actors=[snapshot.teto,...(!pinned?[snapshot.miku]:[]),...snapshot.trail];if(actors.some(p=>p&&SpawnWorld.blocked(p.x,p.y,SpawnWorld.RADIUS,[],TownData.id))){const t={...snapshot.teto},m={...snapshot.miku};SpawnWorld.recover(t,[],TownData.id);if(!pinned)SpawnWorld.recover(m,[],TownData.id);return {...snapshot,gameVersion:LevelData.version,teto:t,miku:m,trail:pinned?[{x:t.x,y:t.y}]:[{x:m.x,y:m.y},{x:t.x,y:t.y}]};}}
+ if(legacy&&globalThis.CloudWorldData&&snapshot.location===CloudWorldData.id&&all.some(p=>p&&SpawnWorld.blocked(p.x,p.y,SpawnWorld.RADIUS,[],CloudWorldData.id))){const t={...CloudWorldData.spawn},m={...CloudWorldData.companion};return {...snapshot,gameVersion:LevelData.version,teto:t,miku:m,trail:[m,t]};}
+ if(legacy&&all.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y))){
+  if(globalThis.HeartRoadData&&snapshot.location==='heart-crossroads'&&all.some(p=>SpawnWorld.blocked(p.x,p.y,SpawnWorld.RADIUS,undefined,'outdoor'))){const d=HeartRoadData.crossroads,t={...d.savePoint.arrival},m=snapshot.flags?.mikuHeartsReleased?{...d.mikuRest}:{x:768,y:-2890,dir:0};return {...snapshot,gameVersion:LevelData.version,teto:t,miku:m,trail:snapshot.flags?.mikuHeartsReleased?[{x:t.x,y:t.y}]:[m,t]};}
+  if(globalThis.CircusData&&snapshot.location==='circus'&&(Number(snapshot.gameVersion||0)<.36||all.some(p=>SpawnWorld.blocked(p.x,p.y,SpawnWorld.RADIUS,undefined,'outdoor')))){const p=CircusData.tent.outsideArrival;return {...snapshot,gameVersion:LevelData.version,teto:{...snapshot.teto,x:p.teto.x,y:p.teto.y},miku:{...snapshot.miku,x:p.miku.x,y:p.miku.y},trail:[{x:p.miku.x,y:p.miku.y},{x:p.teto.x,y:p.teto.y}]}}
+  if(globalThis.InteriorData&&['tent-hall','tent-arena'].includes(snapshot.location)&&all.some(p=>SpawnWorld.blocked(p.x,p.y,SpawnWorld.RADIUS,undefined,'interior',snapshot.flags?.gumiDefeated===true))){const a=snapshot.location==='tent-hall'?InteriorData.hall.spawn:{x:768,y:-2915},b={x:a.x,y:a.y+74};return {...snapshot,gameVersion:LevelData.version,teto:{...snapshot.teto,...a},miku:{...snapshot.miku,...b},trail:[b,a]}}
+ }
+
+ if(!globalThis.GateModel||snapshot.flags?.gateOpened!==undefined)return snapshot;
+ const points=[snapshot.teto,snapshot.miku,...(Array.isArray(snapshot.trail)?snapshot.trail:[])];
+ const legacyForest=points.length>=2&&points.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=0&&p.x<=1536&&p.y>=-900&&p.y<=1024)&&points.some(p=>p.y< -610);
+ if(!legacyForest)return snapshot;
+ return {...snapshot,teto:{...snapshot.teto,x:768,y:-600},miku:{...snapshot.miku,x:825,y:-540},trail:[{x:825,y:-540},{x:768,y:-600}]};
+}
+function migrate(snapshot){let s=migrateLegacy(snapshot);if(s?.flags?.mikuBossDefeated&&s?.activity?.type==='miku-void'){s={...clone(s),activity:{type:'miku-aftermath',id:'portal'}};}if(globalThis.HeartTrialsData&&s?.activity?.type==='heart-minigame'&&['red','yellow','blue'].includes(s.activity.id))s=HeartTrialsData.entrySnapshot(s,s.activity.id);
+ const room=globalThis.HeartTrialsData?.get(s?.location);if(room&&s?.activity?.type==='heart-trial'){
+  const old=s.gameVersion!==LevelData.version,kind=room.kind,p=s.activity.progress;
+  if(kind==='blue'&&p?.schema===3)s={...s,activity:{...s.activity,progress:HeartTrialsModel.normalize(kind,p)}};
+  else if(kind==='blue'&&p&&p.schema!==4){const won=p.won===true;s=HeartTrialsData.entrySnapshot(s,'blue');const m=HeartTrialsModel.create('blue');m.stage=Number.isInteger(p.stage)?Math.max(0,Math.min(2,p.stage)):0;if(won)Object.assign(m,{stage:2,hits:3,phase:'won',won:true});s.activity={type:'heart-trial',id:'blue',mode:won?'collect':snapshot.activity.mode==='explore'?'explore':'play',progress:HeartTrialsModel.capture(m)};}
+  else if(kind==='red'&&old&&p?.schema!==4){const m=HeartTrialsModel.create('red');m.clock=Number.isFinite(p?.clock)&&p.clock>=0?p.clock:0;m.failures=Number.isInteger(p?.failures)&&p.failures>=0?p.failures:0;m.checkpoint=p?.checkpoint?HeartTrialsModel.checkpointIndex:0;m.won=p?.won===true;m.phase=m.won?'won':'play';const t=m.won?{x:768,y:-820}:m.reset();s={...clone(s),teto:{...t,dir:0},trail:[t],gameVersion:LevelData.version,activity:{type:'heart-trial',id:'red',mode:m.won?'collect':'play',progress:HeartTrialsModel.capture(m)}};}
+  else if(kind==='yellow'&&p&&!p.signals)s={...s,activity:{...s.activity,progress:HeartTrialsModel.normalize(kind,p)}};
+  if(old&&[s.teto,...(s.trail||[])].some(p=>p&&SpawnWorld.blocked(p.x,p.y,SpawnWorld.RADIUS,[],room.id))){const t={...room.spawn};s={...s,teto:t,trail:[{x:t.x,y:t.y}]};}
+  if(old)s={...s,gameVersion:LevelData.version};
+ }
+ if(s?.activity?.type==='heart-trial'&&s.activity.progress?.won){const i=HeartQuestModel.definitions.findIndex(d=>d.id===s.activity.id);if(i>=0&&i<3)s={...s,flags:{...s.flags,[HeartQuestModel.unlockedFlags[i]]:true}};}
+ if(s?.flags?.gumiDefeated&&s.wallet?.version===1&&!s.wallet.inventory?.['gumi-wand'])return {...s,wallet:{...s.wallet,inventory:{...s.wallet.inventory,'gumi-wand':1}},flags:{...s.flags,gumiWandClaimed:true}};return s;}
+function valid(snapshot){snapshot=migrate(snapshot);if(!snapshot||snapshot.version!==1||!Number.isFinite(snapshot.playTime)||snapshot.playTime<0||!Number.isFinite(snapshot.animationTime)||snapshot.animationTime<0)return false;
+ const home=globalThis.HomeData&&snapshot.location===HomeData.id,town=globalThis.TownData&&snapshot.location===TownData.id,cloud=globalThis.CloudWorldData&&snapshot.location===CloudWorldData.id,trial=globalThis.HeartTrialsData?.get(snapshot.location),pinned=snapshot.flags?.mikuHeartsReleased&&(!snapshot.flags?.mikuRecovered||trial),zone=home?HomeData.id:town?TownData.id:cloud?CloudWorldData.id:trial?trial.id:['tent-hall','tent-arena'].includes(snapshot.location)?'interior':'outdoor';
+ const overrides=targetZone=>targetZone==='outdoor'&&globalThis.GateModel?GateModel.colliders(snapshot.flags?.gateOpened?1:0):[];
+ const point=(p,targetZone=zone)=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=0&&p.x<=(SpawnWorld.zones[targetZone].width||SpawnWorld.WIDTH)&&p.y>=SpawnWorld.zones[targetZone].minY&&p.y<=SpawnWorld.zones[targetZone].maxY&&!SpawnWorld.blocked(p.x,p.y,SpawnWorld.RADIUS,overrides(targetZone),targetZone,snapshot.flags?.gumiDefeated===true);
+ if(snapshot.location!==undefined&&!home&&!town&&!trial&&!cloud&&!['meadow','forest','circus','tent-hall','tent-arena','long-road','heart-crossroads'].includes(snapshot.location))return false;
+ if(cloud&&(!snapshot.flags?.mikuBossDefeated||!snapshot.flags?.mikuRecovered||!snapshot.flags?.cloudReached||!snapshot.flags?.mikuHeartsReleased))return false;
+ if(snapshot.flags?.mikuBossDefeated&&!['heartRedWon','heartYellowWon','heartBlueWon'].every(k=>snapshot.flags?.[k]))return false;
+ if(snapshot.flags?.neruBattleReached&&(!snapshot.flags?.cloudReached||!snapshot.flags?.neruMet)||snapshot.flags?.neruDefeated&&!snapshot.flags?.neruBattleReached)return false;
+ if(snapshot.flags?.mikuRecovered&&!snapshot.flags?.mikuBossDefeated||snapshot.flags?.cloudReached&&!snapshot.flags?.mikuRecovered||snapshot.flags?.neruMet&&!snapshot.flags?.cloudReached)return false;
+ if(trial&&(!snapshot.flags?.mikuHeartsReleased||!snapshot.flags?.gumiDefeated||!snapshot.flags?.tentEntered||!snapshot.flags?.gateOpened||!snapshot.wallet?.inventory?.['golden-key']))return false;
+ if(['circus','tent-hall','tent-arena','long-road','heart-crossroads'].includes(snapshot.location)&&(!snapshot.flags?.gateOpened||!snapshot.wallet?.inventory?.['golden-key']))return false;
+ if(['long-road','heart-crossroads'].includes(snapshot.location)&&(!snapshot.flags?.gumiDefeated||!snapshot.flags?.tentEntered))return false;
+ if(snapshot.location==='forest'&&snapshot.teto?.y>ForestData.maxY||snapshot.location==='meadow'&&snapshot.teto?.y<0)return false;
+ for(const [name,p]of [['teto',snapshot.teto],['miku',snapshot.miku]])if(!point(p,name==='miku'&&pinned?'outdoor':zone)||!Number.isInteger(p.dir)||p.dir<0||p.dir>3)return false;
+ if(pinned&&(!snapshot.flags?.gumiDefeated||!globalThis.HeartRoadData||Math.hypot(snapshot.miku.x-HeartRoadData.crossroads.mikuRest.x,snapshot.miku.y-HeartRoadData.crossroads.mikuRest.y)>1))return false;
+ if(!Array.isArray(snapshot.trail)||!snapshot.trail.length||snapshot.trail.length>10000||!snapshot.trail.every(p=>point(p)))return false;
+ if(snapshot.townPeople!==undefined&&(!globalThis.TownPeople||!TownPeople.valid(snapshot.townPeople)))return false;
+ if(snapshot.guildOrders!==undefined&&(!globalThis.GuildOrdersModel||!GuildOrdersModel.valid(snapshot.guildOrders)||snapshot.guildOrders.gumiRewarded&&!snapshot.flags?.gumiDefeated))return false;
+ const wallet=snapshot.wallet;if(!wallet||wallet.version!==1||!Number.isInteger(wallet.gold)||wallet.gold<0||wallet.gold>100000||!wallet.inventory||typeof wallet.inventory!=='object')return false;
+ for(const flag of ['flowerDefeated','flowerKeyClaimed','gateOpened','tentDiscussed','tentEntered','gumiDefeated','gumiWandClaimed','mikuHeartsReleased','heartRedWon','heartYellowWon','heartBlueWon','mikuBossDefeated','heartRedUnlocked','heartYellowUnlocked','heartBlueUnlocked','mikuBattleReached','mikuRecovered','cloudReached','neruMet','neruBattleReached','neruDefeated'])if(snapshot.flags?.[flag]!==undefined&&typeof snapshot.flags[flag]!=='boolean')return false;
+ if(['heartRedWon','heartYellowWon','heartBlueWon','mikuBossDefeated','heartRedUnlocked','heartYellowUnlocked','heartBlueUnlocked','mikuBattleReached'].some(k=>snapshot.flags?.[k])&&!snapshot.flags?.mikuHeartsReleased)return false;
+ if(trial){const a=snapshot.activity;if(!a||a.type!=='heart-trial'||a.id!==trial.kind||a.mode!==undefined&&!['explore','play','collect','complete'].includes(a.mode)||!HeartTrialsModel.valid(trial.kind,a.progress))return false;if(['collect','complete'].includes(a.mode)&&!a.progress?.won)return false;if(a.mode==='complete'&&!snapshot.flags[HeartQuestModel.definitions.find(d=>d.id===trial.kind).flag])return false;if(trial.kind==='red'){const m=HeartTrialsModel.create('red',a.progress);if(m.support(snapshot.teto)<0)return false;}if(a.clock!==undefined&&(!Number.isFinite(a.clock)||a.clock<0)||a.viewY!==undefined&&(!Number.isFinite(a.viewY)||a.viewY<(trial.minY||0)||a.viewY>0))return false;}
+ else if(snapshot.activity!==undefined){const a=snapshot.activity;if(!a)return false;if(a.type==='neru-battle'){if(!cloud||a.id!=='neru'||!snapshot.flags?.neruBattleReached)return false;}else if(a.type==='cloud-arrival'){if(!cloud||a.id!=='portal')return false;}else if(a.type==='miku-aftermath'){if(snapshot.location!=='heart-crossroads'||a.id!=='portal'||!snapshot.flags?.mikuBossDefeated)return false;}else if(snapshot.location!=='heart-crossroads'||!snapshot.flags?.mikuHeartsReleased||!(a.type==='heart-minigame'&&['red','yellow','blue'].includes(a.id)||['miku-before-battle','miku-void'].includes(a.type)&&a.id==='miku-boss'&&['heartRedWon','heartYellowWon','heartBlueWon'].every(k=>snapshot.flags[k])))return false;}
+ if(wallet.loadout){const n=ShopModel.normalizeLoadout(wallet.loadout,wallet.inventory),l=wallet.loadout;if(l.schema!==1||!Array.isArray(l.abilities)||l.abilities.length!==10||['weapon','armor','amulet'].some(k=>l[k]!==n[k])||l.abilities.some((v,i)=>v!==n.abilities[i]))return false;}
+ for(const item of ShopModel.inventoryCatalog){const n=wallet.inventory[item.id]||0;if(!Number.isInteger(n)||n<0||n>item.limit)return false}return typeof snapshot.flags?.introSeen==='boolean'&&typeof snapshot.flags?.helpSeen==='boolean';
+}
+function append(ledger,snapshot,now=Date.now()){if(!valid(snapshot))throw Error('Invalid checkpoint');const number=ledger.slots.reduce((n,s)=>Math.max(n,s.number||0),0)+1;const slot={id:`copy-${now}-${number}`,number,createdAt:now,snapshot:clone(snapshot)};return {ledger:{schemaVersion:1,legacyImported:!!ledger.legacyImported,slots:[slot,...ledger.slots]},slot}}
+function rename(ledger,id,name){const text=String(name).trim();if(!text||text.length>40)throw Error('Invalid name');if(!ledger.slots.some(s=>s.id===id))throw Error('Missing checkpoint');return {...ledger,slots:ledger.slots.map(s=>s.id===id?{...s,name:text}:s)}}
+function remove(ledger,id){if(!ledger.slots.some(s=>s.id===id))throw Error('Missing checkpoint');return {...ledger,slots:ledger.slots.filter(s=>s.id!==id)}}
+function parse(raw){if(!raw||raw.schemaVersion!==1||!Array.isArray(raw.slots))return {schemaVersion:1,legacyImported:false,slots:[]};return {schemaVersion:1,legacyImported:!!raw.legacyImported,slots:raw.slots.filter(s=>s&&typeof s.id==='string'&&Number.isInteger(s.number)&&Number.isFinite(s.createdAt)&&s.snapshot)}}
+globalThis.SaveModel={valid,migrate,append,parse,clone,rename,remove};
+})();

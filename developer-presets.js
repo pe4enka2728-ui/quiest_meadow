@@ -1,0 +1,17 @@
+/* Presets return independent snapshots. Existing save slots are never overwritten. */
+(()=>{
+'use strict';
+const definitions=[
+ {slot:1,id:'flower-cleared',title:'Чужая улыбка — пройдена',description:'Цветок побеждён. Золотой ключ в инвентаре.',implemented:true},
+ {slot:2,id:'before-gumi',title:'Перед встречей с Гуми',description:'Арена шатра. Гуми ещё под действием сигнала.',implemented:true},
+ {slot:3,title:'???',implemented:false},
+ {slot:4,id:'after-gumi',title:'После освобождения Гуми',description:'Бой завершён, путь за занавесом открыт.',implemented:true},
+ {slot:5,id:'miku-hearts',title:'Мику? · три сердца',description:'Перекрёсток после сцены с сердцами. Четыре подглавы.',implemented:true,children:true},
+ {slot:6,id:'cloud-island',title:'Тихая высь · Неру',description:'После портала. Тето и Мику на облаке.',implemented:true},...[7,8].map(slot=>({slot,title:'???',implemented:false}))
+];
+const clone=s=>JSON.parse(JSON.stringify(s));
+const children=()=>[{slot:5,title:'Перекрёсток · три сердца',description:'Начать поиск с кристалла.',implemented:true},...HeartQuestModel.definitions.map((d,i)=>({slot:'5.'+(i+1),id:d.id,title:d.title,description:d.subtitle,implemented:true}))];
+function find(slot){return [...definitions,...(globalThis.HeartQuestModel?children().slice(1):[])].find(d=>String(d.slot)===String(slot));}
+function prepare(snapshot,slot){const def=find(slot);if(!def?.implemented)throw new RangeError('This checkpoint is not implemented');const root=Number(String(slot).split('.')[0]),fifth=root===5,after=root===4||fifth||root===6,s=clone(snapshot);delete s.activity;s.flags={...s.flags,introSeen:true,helpSeen:true,flowerDefeated:true,flowerKeyClaimed:true,gateOpened:root!==1,tentDiscussed:root!==1,tentEntered:root!==1,gumiDefeated:after,mikuHeartsReleased:fifth,...(globalThis.HeartQuestModel?HeartQuestModel.read():{})};s.wallet=s.wallet||{version:1,gold:120,inventory:{}};s.wallet.inventory={...s.wallet.inventory,'golden-key':1};if(after)s.wallet.inventory['gumi-wand']=1;else delete s.wallet.inventory['gumi-wand'];s.flags.gumiWandClaimed=after;if(s.guildOrders&&!after)s.guildOrders={...s.guildOrders,gumiRewarded:false};s.location=root===1?'forest':'tent-arena';s.teto=root===1?{x:730,y:-310,dir:1}:{x:730,y:-3120,dir:0};s.miku=root===1?{x:820,y:-310,dir:3}:{x:820,y:-3065,dir:0};s.trail=[{x:s.miku.x,y:s.miku.y},{x:s.teto.x,y:s.teto.y}];if(root===6){if(!globalThis.CloudWorldData)throw new RangeError('Cloud world data is not loaded');Object.assign(s.flags,{mikuHeartsReleased:true,heartRedWon:true,heartYellowWon:true,heartBlueWon:true,heartRedUnlocked:true,heartYellowUnlocked:true,heartBlueUnlocked:true,mikuBattleReached:true,mikuBossDefeated:true,mikuRecovered:true,cloudReached:true,neruMet:false});s.location=CloudWorldData.id;s.teto={...CloudWorldData.spawn};s.miku={...CloudWorldData.companion};s.trail=[{x:s.miku.x,y:s.miku.y},{x:s.teto.x,y:s.teto.y}];return s;}if(fifth){const index=Number(String(slot).split('.')[1]||0);for(let i=0;i<3;i++)s.flags[HeartQuestModel.definitions[i].flag]=index>i+1;if(String(slot)==='5'){const d=HeartRoadData.crossroads;s.location=d.id;s.teto={...d.savePoint.arrival};s.miku={...d.mikuRest};s.trail=[{x:s.teto.x,y:s.teto.y}];return s;}const entry=HeartQuestModel.entry(s,def.id==='miku-hearts'?'red':def.id);if(String(slot)==='5'){delete entry.activity;return entry;}return entry;}return s;}
+globalThis.DeveloperPresets={definitions,children,find,prepare};
+})();

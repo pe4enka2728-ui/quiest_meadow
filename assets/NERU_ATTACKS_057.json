@@ -1,0 +1,50 @@
+[
+  {
+    "output": "lightning-0.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_737_thunder_effect_0.png"
+  },
+  {
+    "output": "lightning-1.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_617_thunder_effect_1.png"
+  },
+  {
+    "output": "lightning-2.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_1102_thunder_effect_2.png"
+  },
+  {
+    "output": "lightning-3.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_1050_thunder_effect_3.png"
+  },
+  {
+    "output": "lightning-4.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_810_thunder_effect_4.png"
+  },
+  {
+    "output": "lightning-5.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_993_thunder_effect_5.png"
+  },
+  {
+    "output": "lightning-6.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_691_thunder_effect_6.png"
+  },
+  {
+    "output": "lightning-7.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_959_thunder_effect_7.png"
+  },
+  {
+    "output": "lightning-8.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_944_thunder_effect_8.png"
+  },
+  {
+    "output": "lightning-9.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_756_thunder_effect_9.png"
+  },
+  {
+    "output": "lightning-10.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_665_thunder_effect_10.png"
+  },
+  {
+    "output": "neru-guard.png",
+    "source": "/workspace/mesmerizer-analysis/assets/images/Sprite/resources.assets_648_mesme_NeruGuard_0.png"
+  }
+]

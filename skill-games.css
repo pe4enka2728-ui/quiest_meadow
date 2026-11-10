@@ -1,0 +1,24 @@
+#battle{overflow:clip}
+#battle #battle-skill-game{position:absolute;left:460px;top:352px;width:616px;padding:15px 18px 12px;background:var(--skill-bg);border:3px solid var(--skill-border);box-shadow:7px 7px var(--skill-shadow);z-index:12;color:var(--skill-text);outline:none;animation:skill-list-in .16s ease}
+#battle #battle-skill-game[hidden]{display:none!important}
+#battle #battle-skill-game header{display:flex;align-items:center;gap:12px;height:36px;margin-bottom:5px}
+#battle #skill-game-icon{width:32px;height:32px;image-rendering:pixelated;flex-shrink:0}
+#battle[data-encounter=miku] #skill-game-icon{filter:grayscale(1)}
+#battle #skill-game-name{font-size:23px;font-weight:400;flex:1}
+#battle #skill-game-time{font-size:15px;color:var(--skill-accent);white-space:nowrap}
+#battle #skill-game-instruction{font-size:16px;line-height:21px;min-height:42px;margin:3px 0 7px;color:var(--skill-text)}
+#battle #skill-game-canvas{display:block;width:100%;height:auto;image-rendering:pixelated;border:1px solid var(--skill-border);background:var(--skill-bg)}
+#battle .skill-game-progress{height:3px;background:var(--skill-muted);margin-top:6px}
+#battle .skill-game-progress i{display:block;height:3px;background:var(--skill-accent);width:0}
+#battle #skill-game-controls{display:flex;justify-content:center;gap:9px;height:36px;margin-top:9px;touch-action:none}
+#battle #skill-game-controls button{height:32px;min-width:61px;padding:3px 12px;font:17px QuietMeadowPixel,monospace;border:1px solid var(--skill-border);color:var(--skill-text);background:var(--skill-row);cursor:pointer;touch-action:none;user-select:none}
+#battle #skill-game-controls button[data-control=confirm]{min-width:120px}
+#battle #skill-game-controls button.is-held{background:var(--skill-active);border-color:var(--skill-accent);transform:translateY(2px)}
+#battle #skill-game-controls button:disabled{opacity:.5;cursor:default}
+#battle #skill-game-controls button:focus-visible{outline:2px solid var(--skill-accent);outline-offset:2px}
+#battle #battle-skill-game footer{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;min-height:23px;color:var(--skill-muted);padding-top:5px}
+#battle #battle-skill-game footer small{font-size:12px;white-space:nowrap}
+#battle .skill-game-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#battle[data-encounter=miku] #battle-skill-game{box-shadow:none}
+#battle .battle-skill-description .battle-skill-task{font-size:13px;color:var(--skill-accent);line-height:19px;margin:7px 0 0}
+#battle #battle-pause{z-index:20}

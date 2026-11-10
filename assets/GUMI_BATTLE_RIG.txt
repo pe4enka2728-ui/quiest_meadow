@@ -1,0 +1,4 @@
+Gumi battle rig: compiled from the previously approved generated Gumi preview.
+Sources retained in /workspace/gumi-animation-preview/assets/gumi-pose-hypnosis-v2.png and gumi-puppet-parts.png (blink).
+Runtime 256x96 PNG contains normalized transparent pixel parts; JSON records exact rectangles and shoulder/wrist pivots.
+No new generated artwork was used in this integration; existing NPC atlas gumi-idle.png is unchanged.

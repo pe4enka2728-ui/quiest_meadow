@@ -1,0 +1,164 @@
+{
+  "abilities": [
+    {
+      "id": "pulse",
+      "quality": "perfect",
+      "mp": 22,
+      "damage": 11
+    },
+    {
+      "id": "scarlet-accent",
+      "quality": "perfect",
+      "mp": 20,
+      "damage": 18
+    },
+    {
+      "id": "double-syllable",
+      "quality": "perfect",
+      "mp": 19,
+      "damage": 18
+    },
+    {
+      "id": "thorn-note",
+      "quality": "perfect",
+      "mp": 20,
+      "damage": 9
+    },
+    {
+      "id": "wormwood",
+      "quality": "perfect",
+      "mp": 18,
+      "damage": 13
+    },
+    {
+      "id": "glass-high",
+      "quality": "perfect",
+      "mp": 17,
+      "damage": 30
+    },
+    {
+      "id": "discord",
+      "quality": "perfect",
+      "mp": 19,
+      "damage": 16
+    },
+    {
+      "id": "step",
+      "quality": "perfect",
+      "mp": 21,
+      "damage": 8
+    },
+    {
+      "id": "reverse-beat",
+      "quality": "perfect",
+      "mp": 18,
+      "damage": 23
+    },
+    {
+      "id": "dawn-chorus",
+      "quality": "perfect",
+      "mp": 15,
+      "damage": 38
+    },
+    {
+      "id": "gumi-wand",
+      "quality": "perfect",
+      "mp": 19,
+      "damage": 23
+    },
+    {
+      "id": "warm-note",
+      "quality": "perfect",
+      "mp": 21,
+      "damage": 0
+    },
+    {
+      "id": "second-breath",
+      "quality": "perfect",
+      "mp": 17,
+      "damage": 0
+    },
+    {
+      "id": "soft-guard",
+      "quality": "perfect",
+      "mp": 22,
+      "damage": 0
+    },
+    {
+      "id": "quiet-shell",
+      "quality": "perfect",
+      "mp": 19,
+      "damage": 0
+    },
+    {
+      "id": "perfect-accent",
+      "quality": "perfect",
+      "mp": 20,
+      "damage": 0
+    },
+    {
+      "id": "quick-tempo",
+      "quality": "perfect",
+      "mp": 22,
+      "damage": 0
+    }
+  ],
+  "pauseFreezesChallenge": true,
+  "battleClockFrozen": true,
+  "modalBlocksContinueAndOtherActions": true,
+  "ratingsChangeActualDamage": true,
+  "perfectGuaranteesHit": true,
+  "invalidCastSpendsNothing": true,
+  "closeCancelsPendingCast": true,
+  "healFeedbackExpiresBuffIconPersists": true,
+  "themes": [
+    {
+      "encounter": "flower",
+      "background": "rgb(17, 38, 44)",
+      "color": "rgb(246, 240, 225)",
+      "rect": {
+        "x": 460,
+        "y": 352,
+        "w": 616,
+        "h": 403.09375
+      }
+    },
+    {
+      "encounter": "gumi",
+      "background": "rgb(17, 38, 44)",
+      "color": "rgb(246, 240, 225)",
+      "rect": {
+        "x": 460,
+        "y": 352,
+        "w": 616,
+        "h": 403.09375
+      }
+    },
+    {
+      "encounter": "neru",
+      "background": "rgb(32, 38, 59)",
+      "color": "rgb(255, 248, 237)",
+      "rect": {
+        "x": 460,
+        "y": 352,
+        "w": 616,
+        "h": 403.09375
+      }
+    },
+    {
+      "encounter": "miku",
+      "background": "rgb(0, 0, 0)",
+      "color": "rgb(255, 255, 255)",
+      "rect": {
+        "x": 460,
+        "y": 352,
+        "w": 616,
+        "h": 403.09375
+      }
+    }
+  ],
+  "touchControls": true,
+  "responsive": true,
+  "errors": [],
+  "externalRequests": []
+}

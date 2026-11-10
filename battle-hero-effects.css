@@ -1,0 +1,21 @@
+/* The small receipts follow the portrait panel and use the encounter palette. */
+#battle #battle-hero-effects{position:absolute;left:17px;bottom:calc(100% + 8px);z-index:5;width:327px;pointer-events:auto}
+#battle .hero-effect-icons{display:flex;gap:7px;align-items:center;min-height:30px}
+#battle .hero-effect{position:relative;display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;padding:1px;background:var(--skill-bg);border:1px solid var(--skill-border);color:var(--skill-text);box-shadow:2px 2px var(--skill-shadow);cursor:help;outline:none}
+#battle .hero-effect-art{width:26px;height:26px;image-rendering:pixelated;pointer-events:none}
+#battle .hero-effect-value{position:absolute;right:-3px;bottom:-5px;font:11px/13px QuietMeadowPixel,monospace;min-width:12px;padding:0 2px;background:var(--skill-bg);color:var(--skill-accent);border:1px solid var(--skill-border);white-space:nowrap;pointer-events:none}
+#battle .hero-effect:hover,#battle .hero-effect:focus-visible{border-color:var(--skill-accent);outline:1px solid var(--skill-accent);outline-offset:2px}
+#battle #battle-hero-effect-tooltip{position:absolute;left:0;bottom:43px;width:300px;max-width:327px;padding:12px 14px;background:var(--skill-bg);border:2px solid var(--skill-border);box-shadow:4px 4px var(--skill-shadow);color:var(--skill-text);pointer-events:none;text-align:left;line-height:1.4;z-index:6}
+#battle #battle-hero-effect-tooltip strong{display:block;font-size:20px;font-weight:400;margin-bottom:4px}
+#battle #battle-hero-effect-tooltip>span{display:block;font-size:18px;color:var(--skill-accent)}
+#battle #battle-hero-effect-tooltip p{font-size:16px;margin:8px 0;line-height:1.4}
+#battle #battle-hero-effect-tooltip small{display:block;font-size:13px;color:var(--skill-muted)}
+#battle[data-encounter=miku] .hero-effect-art{filter:grayscale(1)}
+
+#battle #battle-hero-effect-visuals{position:absolute;left:-12px;top:-12px;width:128px;height:128px;z-index:1;pointer-events:none;image-rendering:pixelated}
+
+#battle #battle-hero-world-effects{position:absolute;inset:0;width:1536px;height:1024px;z-index:2;pointer-events:none;image-rendering:pixelated}
+
+#battle .hero-card{z-index:3}
+#battle[data-encounter=miku] .hero-card{filter:grayscale(1)}
+#battle:is([data-phase=conversation],[data-phase=conversation-out],[data-phase=returning],[data-phase=result]) .hero-card{visibility:hidden;pointer-events:none}

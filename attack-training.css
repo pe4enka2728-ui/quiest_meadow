@@ -1,0 +1,11 @@
+body[data-training]{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;font-family:QuietMeadowPixel,monospace;color:#eee7d4}
+body[data-training] #battle-preview-host{width:min(100vw,calc((100vh - 132px)*1.5));height:min(calc(100vh - 132px),66.6667vw);flex:none}
+#training-toolbar{width:min(1536px,100vw);padding:10px 14px;background:#11292c;border-bottom:2px solid #47675b;flex:none;font-size:14px}
+.training-top{display:flex;align-items:center;gap:18px;min-height:30px;flex-wrap:wrap}
+.training-top strong{font-weight:400;letter-spacing:2px;color:#edb5c7}.training-top span{color:#b2c9b9;flex:1;font-size:12px}
+#training-toolbar label{display:flex;gap:6px;align-items:center;cursor:pointer}#training-toolbar input{accent-color:#e49eb8}
+#training-toolbar button{font:inherit;cursor:pointer;color:#e7ddc9;background:#1b3537;border:2px solid #4a6a61;padding:7px 10px;text-align:left}
+#training-toolbar button:hover,#training-toolbar button:focus-visible{border-color:#f2d4a5;outline:0}
+#training-attacks{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:8px}
+#training-attacks button{font-size:12px;min-height:43px;line-height:1.4}#training-attacks .selected{border-color:#efc8a1;background:#3c4944;color:white}
+@media(max-width:800px){#training-attacks{grid-template-columns:repeat(4,minmax(0,1fr))}.training-top span{display:none}body[data-training] #battle-preview-host{width:min(100vw,calc((100vh - 178px)*1.5));height:min(calc(100vh - 178px),66.6667vw)}}
