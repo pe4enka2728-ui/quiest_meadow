@@ -4,11 +4,11 @@
 
 ## Скачать игру
 
-**[Скачать версию 0.59 — ZIP](https://github.com/pe4enka2728-ui/quiet-meadow/releases/download/v0.59/Quiet-Meadow-0.59.zip)**
+**[Скачать версию 0.59 — ZIP](https://github.com/pe4enka2728-ui/quiest_meadow/releases/download/v0.59/Quiet-Meadow-0.59.zip)**
 
 Распакуйте ZIP и откройте `Play.html` в Chrome или Edge. Установка и интернет для игры не нужны.
 
-В [Releases](https://github.com/pe4enka2728-ui/quiet-meadow/releases) также доступны отдельный HTML, архив исходников, схема коллизий и видео карты. Репозиторий закрытый: для скачивания нужно войти в аккаунт GitHub с доступом.
+В [Releases](https://github.com/pe4enka2728-ui/quiest_meadow/releases) также доступны отдельный HTML, архив исходников, схема коллизий и видео карты. Репозиторий открытый, файлы доступны для скачивания без входа в GitHub.
 
 ![Прибрежный город](docs/city-overview.png)
 
