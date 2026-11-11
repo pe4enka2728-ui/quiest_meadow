@@ -1,0 +1,23 @@
+name: Upload prepared release ZIP
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify prepared archive
+        run: |
+          sha256sum --check <<'CHECKSUM'
+          0d07ae8bfcca3883acb2d947172eb489dba96a98ca6c174ea93337ff02f48cac  release-upload/Quiet-Meadow-0.67.zip
+          CHECKSUM
+      - name: Attach game archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload v0.67 release-upload/Quiet-Meadow-0.67.zip
