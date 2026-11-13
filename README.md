@@ -19,3 +19,5 @@
 Автор — **Honestly**.
 
 [Релиз и описание всех 20 атак](https://github.com/pe4enka2728-ui/quiest_meadow/releases/tag/v0.75)
+
+**[Отдельный прототип 20 атак второй фазы Мику](https://github.com/pe4enka2728-ui/quiest_meadow/releases/tag/miku-phase-two-prototype-v1)** — выбор любой атаки, 10 объёмных предметов, просмотр одной атаки или пары, пауза и перемотка. [Скачать HTML, 2,6 МБ](https://github.com/pe4enka2728-ui/quiest_meadow/releases/download/miku-phase-two-prototype-v1/Miku-Phase-2-20-Attacks-Prototype.html). Откройте файл в браузере; интернет не нужен.
