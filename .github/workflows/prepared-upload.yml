@@ -1,0 +1,30 @@
+name: Upload prepared game and attack editor
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify prepared files
+        run: |
+          sha256sum --check <<'CHECKSUM'
+          c8a16e465e4b8fb2fec734ecbcb4b60daad579d42d6368227454cb47a67befad  release-upload/Quiet-Meadow-0.78.zip
+          6de6f70c86add9914946985449b1e43671e932af6cf01191a3223769e647e734  release-upload/Boss-Attack-Editor-v4.html
+          66ac71b653cb6a94ee5793b67d7c8ea48018e3ced8c3eda16874046d0bf3b924  release-upload/Boss-Attack-Editor-v4.zip
+          CHECKSUM
+      - name: Attach game
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload v0.78 release-upload/Quiet-Meadow-0.78.zip
+      - name: Attach attack editor
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload boss-attack-editor-v4 release-upload/Boss-Attack-Editor-v4.html release-upload/Boss-Attack-Editor-v4.zip
