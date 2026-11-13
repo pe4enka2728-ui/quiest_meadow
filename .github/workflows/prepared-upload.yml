@@ -1,0 +1,30 @@
+name: Upload prepared game and attack editor
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify prepared files
+        run: |
+          sha256sum --check <<'CHECKSUM'
+          cba45ab3623e7d6e248a37c8e896bd0d054b50864fa7d4f16c7ef77b77973886  release-upload/Quiet-Meadow-0.76.zip
+          035be1cebb8f4b358441003c4adc426a3f83f1ab32e79aea954699cd35a1f6fc  release-upload/Miku-Attack-Editor-v2.html
+          59dba2508c675274a53a78da4d0e00a4111abe950a6f71512e6230f496dd5a9c  release-upload/Miku-Attack-Editor-v2.zip
+          CHECKSUM
+      - name: Attach game
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload v0.76 release-upload/Quiet-Meadow-0.76.zip
+      - name: Attach attack editor
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload miku-phase-two-prototype-v2 release-upload/Miku-Attack-Editor-v2.html release-upload/Miku-Attack-Editor-v2.zip
