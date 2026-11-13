@@ -14,7 +14,7 @@ jobs:
       - name: Verify prepared archive
         run: |
           sha256sum --check <<'CHECKSUM'
-          be548bf6340f833d740e8606507a8bf791280e74a0cb838a700fe7b30bd29d27  release-upload/Quiet-Meadow-0.71.zip
+          14930cc7fd7bb2b17b4a6c7b9466f4a999824ba21c5c4c2e538d573401f87b09  release-upload/Quiet-Meadow-0.71.zip
           CHECKSUM
       - name: Attach game archive
         env:
