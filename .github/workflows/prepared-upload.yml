@@ -15,8 +15,8 @@ jobs:
         run: |
           sha256sum --check <<'CHECKSUM'
           c8a16e465e4b8fb2fec734ecbcb4b60daad579d42d6368227454cb47a67befad  release-upload/Quiet-Meadow-0.78.zip
-          6de6f70c86add9914946985449b1e43671e932af6cf01191a3223769e647e734  release-upload/Boss-Attack-Editor-v4.html
-          66ac71b653cb6a94ee5793b67d7c8ea48018e3ced8c3eda16874046d0bf3b924  release-upload/Boss-Attack-Editor-v4.zip
+          8f80bd36e7012cef1141db871f32cc62d625ddcf58705850181c22c74f8bf2f3  release-upload/Boss-Attack-Editor-v4.html
+          b27b1739d9268403277e9e35bd37791dfcee744286de080aa90e962eb01ecb27  release-upload/Boss-Attack-Editor-v4.zip
           CHECKSUM
       - name: Attach game
         env:
