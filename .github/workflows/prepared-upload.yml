@@ -1,0 +1,29 @@
+name: Upload prepared game release
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Verify prepared archive
+        env:
+          EXPECTED_SHA: "69755722f8217cd0533a9c5945da72de4216864aa313cb7a9d770e4c8d90ce19"
+        run: |
+          python - <<'PYVERIFY'
+          import hashlib, os
+          from pathlib import Path
+          p = Path('release-upload/Quiet-Meadow-0.85.zip')
+          assert p.stat().st_size == 91866874
+          assert hashlib.sha256(p.read_bytes()).hexdigest() == os.environ['EXPECTED_SHA']
+          print('Prepared game archive verified')
+          PYVERIFY
+      - name: Attach the prepared game
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload v0.85 release-upload/Quiet-Meadow-0.85.zip --repo "$GITHUB_REPOSITORY"
