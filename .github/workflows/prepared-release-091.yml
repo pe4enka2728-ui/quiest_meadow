@@ -1,0 +1,37 @@
+name: Upload prepared game 0.91 once
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  upload:
+    if: github.ref == 'refs/heads/release-upload-091'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Assemble and verify prepared game files
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          root = Path('release-upload')
+          for entry in json.loads((root / 'manifest.json').read_text()):
+              target = root / entry['name']
+              if entry.get('parts'):
+                  with target.open('wb') as out:
+                      for part in entry['parts']:
+                          out.write((root / part).read_bytes())
+              assert target.stat().st_size == entry['bytes'], target
+              assert hashlib.sha256(target.read_bytes()).hexdigest() == entry['sha256'], target
+              print(target.name, entry['bytes'], entry['sha256'])
+          PY
+      - name: Upload to the draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release upload v0.91
+          release-upload/Quiet-Meadow-0.91.zip
+          release-upload/Quiet-Meadow-0.91-Fixes.mp4
+          --repo "$GITHUB_REPOSITORY"
